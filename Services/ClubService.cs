@@ -39,7 +39,7 @@ namespace OneSkate.Services
 
             if (clubInDb == null)
             {
-                throw new Exception("Nuk ekziston klub me ate ID.");
+                throw new Exception("Club not found.");
             }
 
             _context.Clubs.Remove(clubInDb);
@@ -51,7 +51,7 @@ namespace OneSkate.Services
             var club = _context.Clubs.FirstOrDefault(cl => cl.Id == id);
 
             if (club == null)
-                throw new Exception("Nuk ka klub me ID: " + id);
+                throw new Exception("Club not found");
 
             return _mapper.Map<ClubDto>(club);
         }
@@ -64,8 +64,9 @@ namespace OneSkate.Services
         public void Update(int id, ClubDto clubDto)
         {
             var clubInDb = _context.Clubs.FirstOrDefault(_c => _c.Id == id);
+
             if (clubInDb == null)
-                throw new Exception("Klubi me ID: " + id + " nuk ekziston");
+                throw new Exception("Club not found.");
 
             _mapper.Map(clubDto, clubInDb);
             _context.SaveChanges();
