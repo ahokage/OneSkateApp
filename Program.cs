@@ -14,6 +14,7 @@ namespace OneSkate
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            //TODO: Create Database with EnsureCreated or Migrate from Context
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
