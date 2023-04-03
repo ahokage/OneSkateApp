@@ -15,6 +15,8 @@ namespace OneSkate.Data
         public DbSet<Racer> Racers { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<Venue> Venues { get; set; }
+        public DbSet<RacerRace> RacerRaces { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +28,8 @@ namespace OneSkate.Data
                 .HasForeignKey(r => r.RaceId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<RacerRace>()
+                    .HasKey(x => new { x.RacerId, x.RaceId });
 
             //modelBuilder.Entity<Racer>()
             //    .HasKey(r => new { r.ClubId });

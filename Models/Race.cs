@@ -10,7 +10,7 @@ namespace OneSkate.Models
         public Venue Venue { get; set; }
         public int VenueId { get; set; }
         public DateTime Date { get; set; }
-        public ICollection<Racer> Racers { get; set; }
+        public ICollection<RacerRace> Racers { get; set; }
         public ICollection<Result> Results { get; set; }
     }
 }

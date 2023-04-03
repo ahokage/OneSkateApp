@@ -10,8 +10,7 @@ namespace OneSkate.Models
         public int Age { get; set; }
         public Club Club { get; set; }
         public int? ClubId { get; set; }
-        public Race Race { get; set; }
-        public int? RaceId { get; set; }
+        public IEnumerable<RacerRace> Racers { get; set; }
 
     }
 }

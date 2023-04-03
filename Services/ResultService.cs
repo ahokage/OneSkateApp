@@ -5,6 +5,7 @@ using OneSkate.Data;
 using OneSkate.Dtos;
 using OneSkate.Interfaces;
 using OneSkate.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace OneSkate.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public ResultService(ApplicationDbContext context,IMapper mapper)
+        public ResultService(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -32,14 +33,11 @@ namespace OneSkate.Services
             var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
 
             if (resultInDb == null)
-            {
+                throw new Exception("Results not found.");
 
-            }
-            else
-            {
-                _context.Results.Remove(resultInDb);
-                _context.SaveChanges();
-            }
+            _context.Results.Remove(resultInDb);
+            _context.SaveChanges();
+
         }
 
         public IEnumerable<ResultGetDto> GetAll()
@@ -51,6 +49,9 @@ namespace OneSkate.Services
         {
             var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
 
+            if (resultInDb == null)
+                throw new Exception("Results not found.");
+
             return _mapper.Map<ResultGetDto>(resultInDb);
         }
 
@@ -59,14 +60,10 @@ namespace OneSkate.Services
             var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
 
             if (resultInDb == null)
-            {
+                throw new Exception("Results not found.");
 
-            }
-            else
-            {
-                _mapper.Map(resultDto, resultInDb);
-                _context.SaveChanges();
-            }
+            _mapper.Map(resultDto, resultInDb);
+            _context.SaveChanges();
         }
     }
 }

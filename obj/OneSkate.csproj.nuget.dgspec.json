@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AndiHaviari\\source\\repos\\OneSkateApp\\OneSkate.csproj": {}
+    "C:\\Users\\User\\source\\repos\\OneSkate\\OneSkate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AndiHaviari\\source\\repos\\OneSkateApp\\OneSkate.csproj": {
+    "C:\\Users\\User\\source\\repos\\OneSkate\\OneSkate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AndiHaviari\\source\\repos\\OneSkateApp\\OneSkate.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\OneSkate\\OneSkate.csproj",
         "projectName": "OneSkate",
-        "projectPath": "C:\\Users\\AndiHaviari\\source\\repos\\OneSkateApp\\OneSkate.csproj",
-        "packagesPath": "C:\\Users\\AndiHaviari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AndiHaviari\\source\\repos\\OneSkateApp\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\OneSkate\\OneSkate.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\OneSkate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AndiHaviari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

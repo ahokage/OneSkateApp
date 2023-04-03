@@ -3,6 +3,7 @@ using OneSkate.Data;
 using OneSkate.Dtos;
 using OneSkate.Interfaces;
 using OneSkate.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,24 +34,24 @@ namespace OneSkate.Services
         {
             var venueInDb = _context.Venues.FirstOrDefault(x => x.Id == id);
             if (venueInDb == null)
-            {
+                throw new Exception("Venue not found.");
 
-            }
-            else
-            {
-                _context.Venues.Remove(venueInDb);
-                _context.SaveChanges();
-            }
+            _context.Venues.Remove(venueInDb);
+            _context.SaveChanges();
+
         }
 
         public IEnumerable<VenueDto> GetAll()
         {
-            return _context.Venues.Select(_mapper.Map<Venue , VenueDto>).ToList();
+            return _context.Venues.Select(_mapper.Map<Venue, VenueDto>).ToList();
         }
 
         public VenueDto GetById(int id)
         {
             var venue = _context.Venues.FirstOrDefault(c => c.Id == id);
+
+            if (venue == null)
+                throw new Exception("Venue not found.");
 
             return _mapper.Map<VenueDto>(venue);
         }
@@ -59,15 +60,10 @@ namespace OneSkate.Services
         {
             var venueInDb = _context.Venues.FirstOrDefault(x => x.Id == id);
             if (venueInDb == null)
-            {
+                throw new Exception("Venue not found.");
 
-            }
-            else
-            {
-                _mapper.Map(venueDto, venueInDb);
-                _context.SaveChanges();
-            }
-
+            _mapper.Map(venueDto, venueInDb);
+            _context.SaveChanges();
         }
     }
 }

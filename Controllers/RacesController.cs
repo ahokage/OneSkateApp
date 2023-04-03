@@ -18,7 +18,7 @@ namespace OneSkate.Controllers
             _raceService = raceService;
         }
         [HttpGet]
-        public IEnumerable<RaceDto> GetAll() 
+        public IEnumerable<RaceGetDto> GetAll() 
         {
             return _raceService.GetAll();
         }

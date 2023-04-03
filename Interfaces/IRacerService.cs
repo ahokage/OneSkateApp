@@ -8,8 +8,8 @@ namespace OneSkate.Interfaces
     {
         IEnumerable<RacerGetDto> GetAll();
         RacerDto GetById(int id);
-        RacerGetDto Create(RacerGetDto racerGetDto);
+        RacerDto Create(RacerDto racerGetDto);
         void Delete(int id);
-        void Update(int id,RacerGetDto racerGetDto);
+        void Update(int id,RacerDto racerGetDto);
     }
 }

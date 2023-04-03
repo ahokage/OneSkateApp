@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OneSkate.Data;
 
 namespace OneSkate.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230329143829_addedManyToManyRelationshipRacerRaces")]
+    partial class addedManyToManyRelationshipRacerRaces
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,24 +75,36 @@ namespace OneSkate.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RaceId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClubId");
+
+                    b.HasIndex("RaceId");
 
                     b.ToTable("Racers");
                 });
 
             modelBuilder.Entity("OneSkate.Models.RacerRace", b =>
                 {
-                    b.Property<int>("RacerId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RaceId")
                         .HasColumnType("int");
 
-                    b.HasKey("RacerId", "RaceId");
+                    b.Property<int>("RacerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("RaceId");
+
+                    b.HasIndex("RacerId");
 
                     b.ToTable("RacerRaces");
                 });
@@ -155,19 +169,25 @@ namespace OneSkate.Migrations
                         .WithMany()
                         .HasForeignKey("ClubId");
 
+                    b.HasOne("OneSkate.Models.Race", "Race")
+                        .WithMany("Racers")
+                        .HasForeignKey("RaceId");
+
                     b.Navigation("Club");
+
+                    b.Navigation("Race");
                 });
 
             modelBuilder.Entity("OneSkate.Models.RacerRace", b =>
                 {
                     b.HasOne("OneSkate.Models.Race", "Race")
-                        .WithMany("Racers")
+                        .WithMany()
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OneSkate.Models.Racer", "Racer")
-                        .WithMany("Racers")
+                        .WithMany()
                         .HasForeignKey("RacerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -201,11 +221,6 @@ namespace OneSkate.Migrations
                     b.Navigation("Racers");
 
                     b.Navigation("Results");
-                });
-
-            modelBuilder.Entity("OneSkate.Models.Racer", b =>
-                {
-                    b.Navigation("Racers");
                 });
 #pragma warning restore 612, 618
         }

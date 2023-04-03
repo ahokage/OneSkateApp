@@ -6,7 +6,7 @@ namespace OneSkate.Interfaces
 {
     public interface IRaceService
     {
-        IEnumerable<RaceDto> GetAll();
+        IEnumerable<RaceGetDto> GetAll();
         RaceDto GetById(int id);
         RaceDto Create(RaceDto raceDto);
         void Delete(int id);

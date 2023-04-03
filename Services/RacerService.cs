@@ -4,6 +4,7 @@ using OneSkate.Data;
 using OneSkate.Dtos;
 using OneSkate.Interfaces;
 using OneSkate.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +20,7 @@ namespace OneSkate.Services
             _mapper = mapper;
             _context = context;
         }
-        public RacerGetDto Create(RacerGetDto racerGetDto)
+        public RacerDto Create(RacerDto racerGetDto)
         {
             var racer = _mapper.Map<Racer>(racerGetDto);
             _context.Racers.Add(racer);
@@ -34,41 +35,38 @@ namespace OneSkate.Services
             var racerInDb = _context.Racers.FirstOrDefault(r => r.Id == id);
 
             if (racerInDb == null)
-            {
-            }
-            else
-            {
-                _context.Racers.Remove(racerInDb);
-                _context.SaveChanges();
-            }
+                throw new Exception("Racer not found.");
+
+            _context.Racers.Remove(racerInDb);
+            _context.SaveChanges();
+            
         }
 
         public IEnumerable<RacerGetDto> GetAll()
         {
-            return _context.Racers.Include(x => x.Club).Include(x => x.Race).Select(_mapper.Map<Racer, RacerGetDto>).ToList();
+            return _context.Racers.Include(x => x.Club).Select(_mapper.Map<Racer, RacerGetDto>).ToList();
         }
 
         public RacerDto GetById(int id)
         {
             var racer = _context.Racers.Include(x => x.Club).Include(x => x.Club).FirstOrDefault(ra => ra.Id == id);
 
+            if (racer == null)
+                throw new Exception("Racer not found.");
+
             return _mapper.Map<RacerDto>(racer);
         }
         //TODO Fix this
-        public void Update(int id,RacerGetDto racerGetDto)
+        public void Update(int id,RacerDto racerDto)
         {
-            var racerInDb = _context.Racers.Include(x => x.Race).Include(x => x.Club).FirstOrDefault(x => x.Id == id);
+            var racerInDb = _context.Racers.Include(x => x.Club).FirstOrDefault(x => x.Id == id);
 
-            if(racerInDb == null)
-            {
+            if (racerInDb == null)
+                throw new Exception("Racer not found.");
 
-            }
-            else
-            {
-                _mapper.Map(racerGetDto, racerInDb);
-                _context.Update(racerInDb);
-                _context.SaveChanges();
-            }
+            _mapper.Map(racerDto, racerInDb);
+            _context.Update(racerInDb);
+            _context.SaveChanges();
         }
     }
 }
