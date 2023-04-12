@@ -22,22 +22,36 @@ namespace OneSkate.Data
         {
             base.OnModelCreating(modelBuilder);
 
+
+            modelBuilder.Entity<RacerRace>()
+                .HasOne(r => r.Race)
+                .WithMany(r => r.Racers)
+                .HasForeignKey(r => r.RaceId)
+                .OnDelete(DeleteBehavior.Cascade); 
+            
+            modelBuilder.Entity<RacerRace>()
+                .HasOne(r => r.Racer)
+                .WithMany(r => r.Races)
+                .HasForeignKey(r => r.RacerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Result>()
                 .HasOne(r => r.Race)
                 .WithMany(x => x.Results)
                 .HasForeignKey(r => r.RaceId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Result>()
+                .HasOne(r => r.Racer)
+                .WithMany(x => x.Results)
+                .HasForeignKey(r => r.RacerId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<RacerRace>()
                     .HasKey(x => new { x.RacerId, x.RaceId });
 
-            //modelBuilder.Entity<Racer>()
-            //    .HasKey(r => new { r.ClubId });
-
-            //modelBuilder.Entity<Racer>()
-            //    .HasOne(r => r.Club)
-            //    .WithMany()
-            //    .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Result>()
+                .HasKey(x => new { x.RacerId, x.RaceId });
         }
     }
 }

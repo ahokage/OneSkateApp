@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OneSkate.Data;
 
 namespace OneSkate.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230406094526_MadeResultIdComposite")]
+    partial class MadeResultIdComposite
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,7 +162,7 @@ namespace OneSkate.Migrations
                         .IsRequired();
 
                     b.HasOne("OneSkate.Models.Racer", "Racer")
-                        .WithMany("Races")
+                        .WithMany("Racers")
                         .HasForeignKey("RacerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -175,7 +177,7 @@ namespace OneSkate.Migrations
                     b.HasOne("OneSkate.Models.Race", "Race")
                         .WithMany("Results")
                         .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OneSkate.Models.Racer", "Racer")
@@ -198,7 +200,7 @@ namespace OneSkate.Migrations
 
             modelBuilder.Entity("OneSkate.Models.Racer", b =>
                 {
-                    b.Navigation("Races");
+                    b.Navigation("Racers");
 
                     b.Navigation("Results");
                 });

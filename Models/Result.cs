@@ -2,7 +2,6 @@
 {
     public class Result
     {
-        public int Id { get; set; }
         public Racer Racer { get; set; }
         public int RacerId { get; set; }
         public Race Race { get; set; }

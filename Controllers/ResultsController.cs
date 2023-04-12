@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using OneSkate.Dtos;
 using OneSkate.Interfaces;
 using System.Collections.Generic;
@@ -20,25 +21,20 @@ namespace OneSkate.Controllers
         {
             return _resultService.GetAll();
         }
-        [HttpGet("{id}")]
-        public ResultGetDto GetById(int id)
+        [HttpGet("RaceResults{id}")]
+        public RaceGetDto RaceById(int id)
         {
-            return _resultService.GetById(id);
+            return _resultService.RaceById(id);
+        }
+        [HttpGet("RacerResults{id}")]
+        public RacerGetResultsDto RacerById(int id)
+        {
+            return _resultService.RacerById(id);
         }
         [HttpPost]
         public ResultDto Create(ResultDto resultDto)
         {
             return _resultService.Create(resultDto);
-        }
-        [HttpPut]
-        public void Update(int id, ResultDto resultDto) 
-        {
-            _resultService.Update(id, resultDto);
-        }
-        [HttpDelete]
-        public void Delete(int id)
-        {
-            _resultService.Delete(id);
         }
     }
 }

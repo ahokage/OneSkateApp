@@ -28,42 +28,37 @@ namespace OneSkate.Services
             return resultDto;
         }
 
-        public void Delete(int id)
-        {
-            var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
-
-            if (resultInDb == null)
-                throw new Exception("Results not found.");
-
-            _context.Results.Remove(resultInDb);
-            _context.SaveChanges();
-
-        }
-
         public IEnumerable<ResultGetDto> GetAll()
         {
-            return _context.Results.Include(x => x.Race).Include(x => x.Racer).Select(_mapper.Map<Result, ResultGetDto>).ToList();
+            return _context.Results
+            .Include(x => x.Race)
+            .Include(x => x.Racer)
+            .Select(_mapper.Map<Result, ResultGetDto>).ToList();
         }
 
-        public ResultGetDto GetById(int id)
+        public RaceGetDto RaceById(int id)
         {
-            var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
+            var resultInDb = _context.Races
+                .Include(x => x.Results)
+                .ThenInclude(x => x.Racer)
+                .FirstOrDefault(x => x.Id == id);
 
             if (resultInDb == null)
                 throw new Exception("Results not found.");
 
-            return _mapper.Map<ResultGetDto>(resultInDb);
+            return _mapper.Map<RaceGetDto>(resultInDb);
         }
-
-        public void Update(int id, ResultDto resultDto)
+        public RacerGetResultsDto RacerById(int id)
         {
-            var resultInDb = _context.Results.FirstOrDefault(x => x.Id == id);
+            var  racerInDb = _context.Racers
+                .Include( x => x.Results)
+                .ThenInclude( x => x.Race)
+                .FirstOrDefault(x => x.Id==id);
 
-            if (resultInDb == null)
+            if (racerInDb == null)
                 throw new Exception("Results not found.");
 
-            _mapper.Map(resultDto, resultInDb);
-            _context.SaveChanges();
+            return _mapper.Map<RacerGetResultsDto>(racerInDb);
         }
     }
 }

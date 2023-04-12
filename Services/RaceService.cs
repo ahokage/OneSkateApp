@@ -8,6 +8,7 @@ using OneSkate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OneSkate.Services
 {
@@ -46,28 +47,36 @@ namespace OneSkate.Services
 
         public IEnumerable<RaceGetDto> GetAll()
         {
-            return _context.Races.Include(x => x.Racers).ThenInclude(x => x.Racer).Include(r => r.Results).Select(_mapper.Map<Race, RaceGetDto>).ToList();
+            return _context.Races
+                .Include(x => x.Racers)
+                .ThenInclude(x => x.Racer)
+                .Include(r => r.Results)
+                .Select(_mapper.Map<Race, RaceGetDto>)
+                .ToList();
         }
 
-        public RaceDto GetById(int id)
+        public RaceGetDto GetById(int id)
         {
-            var race = _context.Races.Include(x => x.Racers).Include(x => x.Results).FirstOrDefault(r => r.Id == id);
+            var race = _context.Races
+                .Include(x => x.Racers)
+                .ThenInclude(x => x.Racer)
+                .Include(x => x.Results)
+                .FirstOrDefault(r => r.Id == id);
 
             if (race == null)
                 throw new Exception("Race not found.");
 
-            return _mapper.Map<RaceDto>(race);
+            return _mapper.Map<RaceGetDto>(race);
         }
         public void Update(int id, RaceDto raceDto)
         {
-            var raceInDb = _context.Races.Include(r => r.Racers).FirstOrDefault(x => x.Id == id);
+            var raceInDb = _context.Races.Include(x => x.Racers).Include(x => x.Results).FirstOrDefault(x => x.Id == id);
 
             if (raceInDb == null)
                 throw new Exception("Race not found.");
 
             _mapper.Map(raceDto, raceInDb);
             _context.SaveChanges();
-
         }
     }
 }

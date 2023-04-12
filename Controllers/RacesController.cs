@@ -23,7 +23,7 @@ namespace OneSkate.Controllers
             return _raceService.GetAll();
         }
         [HttpGet("{id}")]
-        public RaceDto GetById(int id) 
+        public RaceGetDto GetById(int id) 
         {
             return _raceService.GetById(id);
         }

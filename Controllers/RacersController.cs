@@ -18,7 +18,7 @@ namespace OneSkate.Controllers
             _racerService = racerService;
         }
         [HttpGet]
-        public IEnumerable<RacerGetDto> GetAll()
+        public IEnumerable<RacerDto> GetAll()
         {
             return _racerService.GetAll();
         }
@@ -38,9 +38,9 @@ namespace OneSkate.Controllers
             _racerService.Delete(id);
         }
         [HttpPut]
-        public void Update(int id, RacerDto racerGetDto)
+        public void Update(int id, RacerDto RacerDto)
         {
-            _racerService.Update(id, racerGetDto);
+            _racerService.Update(id, RacerDto);
         }
     }
 }

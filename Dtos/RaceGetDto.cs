@@ -10,7 +10,7 @@ namespace OneSkate.Dtos
         public string Name { get; set; }
         public int VenueId { get; set; }
         public DateTime Date { get; set; }
-        public ICollection<RacerGetDto> Racers { get; set; }
-        public ICollection<ResultDto> Results { get; set; }
+        public ICollection<RacerDto> Racers { get; set; }
+        public ICollection<ResultGetDto> Results { get; set; }
     }
 }

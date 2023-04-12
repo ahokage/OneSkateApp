@@ -7,9 +7,8 @@ namespace OneSkate.Interfaces
     public interface IResultService
     {
         IEnumerable <ResultGetDto> GetAll();
-        ResultGetDto GetById(int id);
+        RaceGetDto RaceById(int id);
+        RacerGetResultsDto RacerById(int id);
         ResultDto Create(ResultDto resultDto);
-        void Delete(int id);
-        void Update(int id,ResultDto resultDto);
     }
 }

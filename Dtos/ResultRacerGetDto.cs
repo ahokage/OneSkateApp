@@ -1,8 +1,8 @@
 ﻿namespace OneSkate.Dtos
 {
-    public class ResultGetDto
+    public class ResultRacerGetDto
     {
-        public string RacerName { get; set; }
+        public string RaceName { get; set; }
         public int Rank { get; set; }
     }
 }

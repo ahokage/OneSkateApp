@@ -20,14 +20,14 @@ namespace OneSkate.Services
             _mapper = mapper;
             _context = context;
         }
-        public RacerDto Create(RacerDto racerGetDto)
+        public RacerDto Create(RacerDto racerDto)
         {
-            var racer = _mapper.Map<Racer>(racerGetDto);
+            var racer = _mapper.Map<Racer>(racerDto);
             _context.Racers.Add(racer);
             _context.SaveChanges();
-            racerGetDto.Id = racer.Id;
+            racerDto.Id = racer.Id;
 
-            return racerGetDto;
+            return racerDto;
         }
 
         public void Delete(int id)
@@ -42,9 +42,9 @@ namespace OneSkate.Services
             
         }
 
-        public IEnumerable<RacerGetDto> GetAll()
+        public IEnumerable<RacerDto> GetAll()
         {
-            return _context.Racers.Include(x => x.Club).Select(_mapper.Map<Racer, RacerGetDto>).ToList();
+            return _context.Racers.Include(x => x.Club).Select(_mapper.Map<Racer, RacerDto>).ToList();
         }
 
         public RacerDto GetById(int id)

@@ -21,25 +21,29 @@ namespace OneSkate.Helpers
                 CreateMap<Racer, RacerDto>();
                 CreateMap<RacerDto, Racer>().ForMember(c => c.Id, opt => opt.Ignore());
                 CreateMap<Result, ResultDto>();
-                CreateMap<ResultDto, Result>().ForMember(c => c.Id, opt => opt.Ignore());
-                CreateMap<Result, ResultGetDto>().ForMember(c => c.RaceName , opt => opt.MapFrom(src => src.Race.Name))
-                         .ForMember(c => c.RacerName , opt => opt.MapFrom(src => src.Racer.Name));
-                CreateMap<ResultGetDto, Result>().ForMember(c => c.Id, opt => opt.Ignore());
+                CreateMap<ResultDto, Result>();
+                CreateMap<Result, ResultGetDto>().ForMember(c => c.RacerName , opt => opt.MapFrom(src => src.Racer.Name));
+                CreateMap<ResultGetDto, Result>();
+
+                CreateMap<Result, ResultRacerGetDto>().ForMember(c => c.RaceName , opt => opt.MapFrom(src => src.Race.Name));
+
                 CreateMap<Venue, VenueDto>();
                 CreateMap<VenueDto, Venue>().ForMember(c => c.Id, opt => opt.Ignore());
-                CreateMap<RacerDto, RacerGetDto>();
-                CreateMap<RacerGetDto, Racer>().ForMember(c => c.Id ,opt => opt.Ignore());
+
                 CreateMap<RacerRace, RacerRaceDto>();
                 CreateMap<RacerRaceDto, RacerRace>();
 
 
                 CreateMap<Race, RaceGetDto>().ForMember(dest => dest.Racers, opt => opt.MapFrom(src => src.Racers.Select(x => x.Racer)));
 
-                //CreateMap<RaceDto, Race>().ForMember(dest => dest.Racers, opt => opt.MapFrom(src => src.Racerss.Select(x => new RacerRace
-                //{
-                //    RacerId = x.Id,
-                //    RaceId = src.Id
-                //})));
+                CreateMap<RaceDto, Race>().ForMember(dest => dest.Racers, opt => opt.MapFrom(src => src.Racers.Select(x => new RacerRace
+                {
+                    RacerId = x.Id,
+                    RaceId = src.Id
+                })))
+                    .ForMember(c => c.Id, opt => opt.Ignore());
+
+                CreateMap<RacerGetResultsDto, Racer>();
 
             }
         }
