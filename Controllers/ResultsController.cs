@@ -31,10 +31,5 @@ namespace OneSkate.Controllers
         {
             return _resultService.RacerById(id);
         }
-        [HttpPost]
-        public ResultDto Create(ResultDto resultDto)
-        {
-            return _resultService.Create(resultDto);
-        }
     }
 }

@@ -20,13 +20,6 @@ namespace OneSkate.Services
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Create(ResultDto resultDto)
-        {
-            var result = _mapper.Map<Result>(resultDto);
-            _context.Results.Add(result);
-            _context.SaveChanges();
-            return resultDto;
-        }
 
         public IEnumerable<ResultGetDto> GetAll()
         {

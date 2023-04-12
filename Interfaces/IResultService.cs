@@ -9,6 +9,5 @@ namespace OneSkate.Interfaces
         IEnumerable <ResultGetDto> GetAll();
         RaceGetDto RaceById(int id);
         RacerGetResultsDto RacerById(int id);
-        ResultDto Create(ResultDto resultDto);
     }
 }
