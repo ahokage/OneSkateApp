@@ -1,0 +1,40 @@
+﻿@page
+@model OneSkate.Web.Pages.Venues.DisplayModel
+@{
+}<h2>Venues</h2>
+
+<a asp-page="Create" class="btn btn-primary">Create New</a>
+
+<html>
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Notes</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var venue in Model.Venues)
+                {
+                    <tr>
+                        <td>
+                            @venue.Name
+                        </td>
+                        <td>
+                            @venue.Notes
+                        </td>
+                        <td>
+                            <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@venue.Id">Edit</a>
+                            <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@venue.Id" onclick="return confirm('Are you sure you want to delete @venue.Name?')">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>

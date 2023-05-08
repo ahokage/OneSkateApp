@@ -1,0 +1,23 @@
+﻿@page
+@model OneSkate.Web.Pages.Venues.EditModel
+@{
+}
+<html>
+<body>
+    <form method="post">
+        <br />
+        @Html.LabelFor(m => m.Venue.Name)
+        @Html.TextBoxFor(m => m.Venue.Name)
+        @Html.ValidationMessageFor(m => m.Venue.Name)
+        <br />
+        <br />
+        @Html.LabelFor(m => m.Venue.Notes)
+        @Html.TextBoxFor(m => m.Venue.Notes)
+        @Html.ValidationMessageFor(m => m.Venue.Notes)
+        <br />
+        <br />
+        <button class="btn-primary" type="submit">Save</button>
+    </form>
+    <br />
+</body>
+</html>

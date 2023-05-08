@@ -1,0 +1,17 @@
+﻿@page
+@model OneSkate.Web.Pages.Clubs.EditModel
+@{
+}
+<html>
+<body>
+    <form method="post">
+        @Html.LabelFor(m => m.Club.Name)
+        @Html.TextBoxFor(m => m.Club.Name)
+        @Html.ValidationMessageFor(m => m.Club.Name)
+        <br />
+        <br />
+        <button class="btn-primary" type="submit">Save</button>
+    </form>
+    <br />
+</body>
+</html>

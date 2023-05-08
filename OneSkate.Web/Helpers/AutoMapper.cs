@@ -21,10 +21,12 @@ namespace OneSkate.Web.Helpers
                 CreateMap<RacerDto, Racer>().ForMember(c => c.Id, opt => opt.Ignore());
                 CreateMap<Result, ResultDto>();
                 CreateMap<ResultDto, Result>();
-                CreateMap<Result, ResultGetDto>().ForMember(c => c.RacerName , opt => opt.MapFrom(src => src.Racer.Name));
+                CreateMap<Result, ResultGetDto>().ForMember(c => c.RacerName , opt => opt.MapFrom(src => src.Racer.Name))
+                .ForMember(c => c.Id, opt => opt.MapFrom(src => src.RaceId));
                 CreateMap<ResultGetDto, Result>();
 
-                CreateMap<Result, ResultRacerGetDto>().ForMember(c => c.RaceName , opt => opt.MapFrom(src => src.Race.Name));
+                CreateMap<Result, ResultRacerGetDto>().ForMember(c => c.RaceName, opt => opt.MapFrom(src => src.Race.Name))
+                    .ForMember(c => c.Id, opt => opt.MapFrom(src => src.RacerId));
 
                 CreateMap<Venue, VenueDto>();
                 CreateMap<VenueDto, Venue>().ForMember(c => c.Id, opt => opt.Ignore());
@@ -42,8 +44,7 @@ namespace OneSkate.Web.Helpers
                 })))
                     .ForMember(c => c.Id, opt => opt.Ignore());
 
-                CreateMap<RacerGetResultsDto, Racer>();
-
+                CreateMap<RacerGetResultsDto, Racer>().ForMember(c => c.Id, opt => opt.Ignore());
             }
         }
     }

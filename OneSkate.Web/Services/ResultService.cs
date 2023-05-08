@@ -8,6 +8,7 @@ using OneSkate.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace OneSkate.Web.Services
 {
@@ -27,6 +28,32 @@ namespace OneSkate.Web.Services
             .Include(x => x.Race)
             .Include(x => x.Racer)
             .Select(_mapper.Map<Result, ResultGetDto>).ToList();
+        }
+        public IEnumerable<ResultRacerGetDto> GetAllRaces()
+        {
+            return _context.Results
+                .Include(x => x.Race)
+                .Include(x => x.Racer)
+                .Select(_mapper.Map<Result, ResultRacerGetDto>).ToList();
+        }
+        public ResultDto GetRaceById(int id)
+        {
+            var race = _context.Results.FirstOrDefault(x => x.RaceId == id);
+
+            if(race == null)
+                throw new Exception("Results not found.");
+
+            return _mapper.Map<Result, ResultDto>(race);
+        }
+
+        public ResultDto GetRacerById(int id)
+        {
+             var racer = _context.Results.FirstOrDefault(r => r.RacerId == id);
+
+            if (racer == null)
+                throw new Exception("Results not found.");
+
+            return _mapper.Map<Result, ResultDto>(racer);
         }
 
         public RaceGetDto RaceById(int id)

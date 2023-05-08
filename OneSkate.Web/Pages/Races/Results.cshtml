@@ -1,0 +1,47 @@
+﻿@page
+@model OneSkate.Web.Pages.Races.ResultsModel
+@{
+}
+<html>
+<head>
+    <h1 style="text-align:center">@Model.Race.Name</h1>
+    <br />
+</head>
+<body>
+    @{
+
+        if (Model.ListItems.Count == 0)
+        {
+            <h3 style="text-align:center">This race has no results yet.</h3>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Racer</th>
+                        <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var result in Model.ListItems)
+                        {
+                            <tr>
+                                <td>
+                                    @result.Text
+                                </td>
+                                <td>
+                                    @result.Value
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+
+</body>
+</html>

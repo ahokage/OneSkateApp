@@ -1,0 +1,33 @@
+﻿@page
+@model OneSkate.Web.Pages.Racers.EditModel
+@{
+}
+<html>
+<body>
+    <form method="post">
+
+        @Html.LabelFor(model => model.Racer.Name)
+        @Html.TextBoxFor(model => model.Racer.Name)
+        @Html.ValidationMessageFor(model => model.Racer.Name)
+        <br />
+
+        <br />
+        @Html.LabelFor(model => model.Racer.Age)
+        @Html.TextBoxFor(model => model.Racer.Age)
+        @Html.ValidationMessageFor(model => model.Racer.Age)
+
+        <br />
+
+        <br />
+        @Html.DropDownListFor(model => model.Racer.ClubId,Model.ListItems, " Select Club ")
+        @Html.ValidationMessageFor(model => model.Racer.ClubId)
+        <br />
+
+        <br />
+
+
+        <button class="btn-primary" type="submit">Save</button>
+    </form>
+    <br />
+</body>
+</html>

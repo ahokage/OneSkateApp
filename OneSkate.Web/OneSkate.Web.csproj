@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-OneSkate.Web-1f26ee24-07a2-4912-8a6b-d6d35cb974cd</UserSecretsId>
   </PropertyGroup>

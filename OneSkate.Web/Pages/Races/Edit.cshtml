@@ -1,0 +1,30 @@
+﻿@page
+@model OneSkate.Web.Pages.Races.EditModel
+@{
+}
+<html>
+<body>
+    <form method="post">
+
+        @Html.LabelFor(model =>model.Race.Name)
+        @Html.TextBoxFor(model => model.Race.Name)
+        <br />
+        <br />
+        @Html.LabelFor(model => model.Race.Date)
+        @Html.TextBoxFor(model => model.Race.Date)
+        <br />
+        <br />
+        @Html.LabelFor(model => Model.SelectedIds,"Racers")
+        @Html.ListBoxFor(model => Model.SelectedIds,Model.RacersList)
+        <br />
+        <br />
+        @Html.LabelFor(model => model.Race.VenueId,"Venue")
+        @Html.DropDownListFor(model=>model.Race.VenueId,Model.ListItems,"Select Venue")
+        <br />
+        <br />
+
+        <button class="btn-primary" type="submit">Save</button>
+    </form>
+    <br />
+</body>
+</html>

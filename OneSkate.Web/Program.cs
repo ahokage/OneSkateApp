@@ -24,6 +24,10 @@ builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IRaceService, RaceService>();
 builder.Services.AddScoped<IResultService, ResultService>();
 
+//builder.Services.AddHttpClient("OneSkate.API", client => client.BaseAddress = new Uri("https://localhost:44336/"));
+
+//builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("OneSkate.API"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,7 +49,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
 app.MapRazorPages();
+app.MapControllers();
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {

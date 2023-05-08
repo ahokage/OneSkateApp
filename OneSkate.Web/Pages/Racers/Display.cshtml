@@ -1,0 +1,53 @@
+﻿@page
+@model OneSkate.Web.Pages.Racers.DisplayModel
+@{
+}<h2>Racers</h2>
+
+<a asp-page="Create" class="btn btn-primary">Create New</a>
+
+<html>
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Club</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var racer in Model.Racers)
+                {
+                    <tr>
+                        <td>
+                            <a asp-page="Results" class="btn-link" asp-route-Id="@racer.Id">@racer.Name</a>
+                        </td>
+                        <td>
+                            @racer.Age
+                        </td>
+                        <td>
+                            @foreach(var club in Model.ListItems)
+                            {
+                                if (racer.ClubId == Int32.Parse(club.Value))
+                                {
+                                    @club.Text
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@racer.Id">Edit</a>
+                            <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@racer.Id" onclick="return confirm('Are you sure you want to delete this racer : @racer.Name')">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+
+</body>
+</html>

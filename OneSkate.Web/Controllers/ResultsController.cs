@@ -21,12 +21,12 @@ namespace OneSkate.Web.Controllers
         {
             return _resultService.GetAll();
         }
-        [HttpGet("RaceResults{id}")]
+        [HttpGet("RaceResults/{id}")]
         public RaceGetDto RaceById(int id)
         {
             return _resultService.RaceById(id);
         }
-        [HttpGet("RacerResults{id}")]
+        [HttpGet("RacerResults/{id}")]
         public RacerGetResultsDto RacerById(int id)
         {
             return _resultService.RacerById(id);
