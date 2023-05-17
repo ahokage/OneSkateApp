@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
 
@@ -14,9 +15,14 @@ namespace OneSkate.Web.Pages.Venues
         }
         [BindProperty]
         public VenueDto Venue { get; set; }
+        [BindProperty]
+        public string VenueName { get; set; }
 
-        public void OnGet()
-        {
+        public IActionResult OnGet(int id)
+        {                   
+            Venue = _venueService.GetById(id);
+            return Page();
+
         }
         public IActionResult OnPost(int id)
         {

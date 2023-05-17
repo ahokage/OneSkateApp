@@ -55,7 +55,7 @@ namespace OneSkate.Web.Services
                 .ToList();
         }
 
-        public RaceGetDto GetById(int id)
+        public RaceDto GetById(int id)
         {
             var race = _context.Races
                 .Include(x => x.Racers)
@@ -66,8 +66,23 @@ namespace OneSkate.Web.Services
             if (race == null)
                 throw new Exception("Race not found.");
 
-            return _mapper.Map<RaceGetDto>(race);
+            return _mapper.Map<RaceDto>(race);
         }
+
+        public RaceDto GetByIdDto(int id)
+        {
+            var raceInDb = _context.Races
+                 .Include(x => x.Racers)
+                 .ThenInclude(x => x.Racer)
+                 .Include(x => x.Results)
+                 .FirstOrDefault(r => r.Id == id);
+
+            if (raceInDb == null)
+                throw new Exception("Race not found");
+
+            return _mapper.Map<RaceDto>(raceInDb);
+        }
+
         public void Update(int id, RaceDto raceDto)
         {
             var raceInDb = _context.Races.Include(x => x.Racers).Include(x => x.Results).FirstOrDefault(x => x.Id == id);

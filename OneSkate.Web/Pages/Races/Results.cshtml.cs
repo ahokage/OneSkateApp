@@ -18,7 +18,7 @@ namespace OneSkate.Web.Pages.Races
         public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
         public IEnumerable<ResultGetDto> Results { get; set; }
 
-        public RaceGetDto Race { get; set; }
+        public RaceDto Race { get; set; }
         public void OnGet(int id)
         { 
             Race = _raceService.GetById(id);
@@ -26,7 +26,7 @@ namespace OneSkate.Web.Pages.Races
 
             foreach (var result in Results)
             {
-                if(result.Id == id)
+                if(result.RaceId == id)
                 {
                     ListItems.Add(new SelectListItem
                     {

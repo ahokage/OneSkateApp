@@ -1,12 +1,18 @@
 ﻿@page
 @model OneSkate.Web.Pages.Venues.DisplayModel
 @{
-}<h2>Venues</h2>
-
-<a asp-page="Create" class="btn btn-primary">Create New</a>
-
+}
 <html>
+    <head>
+        <style>
+            table,td,th{
+                border: 1px solid black
+            }
+        </style>
+    </head>
 <body>
+    <h2>Venues</h2>
+    <a asp-page="Create" class="btn btn-primary">Create New</a><br /><br />
 
     <table class="table">
         <thead>

@@ -3,15 +3,26 @@
 @{
 }
 <html>
+<head>
+    <style>
+        .form-group {
+            margin-bottom: 10px
+        }
+    </style>
+</head>
 <body>
-    <form method="post">
-        @Html.LabelFor(m => m.Club.Name)
-        @Html.TextBoxFor(m => m.Club.Name)
-        @Html.ValidationMessageFor(m => m.Club.Name)
-        <br />
-        <br />
-        <button class="btn-primary" type="submit">Save</button>
-    </form>
-    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h3>Edit club</h3>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Club.Name)
+                    @Html.TextBoxFor(m => m.Club.Name, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Club.Name)
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

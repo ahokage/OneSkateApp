@@ -3,31 +3,34 @@
 @{
 }
 <html>
+<style>
+    .form-group {
+        margin-bottom: 10px
+    }
+</style>
 <body>
-    <form method="post">
-
-        @Html.LabelFor(model => model.Racer.Name)
-        @Html.TextBoxFor(model => model.Racer.Name)
-        @Html.ValidationMessageFor(model => model.Racer.Name)
-        <br />
-
-        <br />
-        @Html.LabelFor(model => model.Racer.Age)
-        @Html.TextBoxFor(model => model.Racer.Age)
-        @Html.ValidationMessageFor(model => model.Racer.Age)
-
-        <br />
-
-        <br />
-        @Html.DropDownListFor(model => model.Racer.ClubId,Model.ListItems, " Select Club ")
-        @Html.ValidationMessageFor(model => model.Racer.ClubId)
-        <br />
-
-        <br />
-
-
-        <button class="btn-primary" type="submit">Save</button>
-    </form>
-    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h3>Edit racer</h3>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Racer.Name)
+                    @Html.TextBoxFor(model => model.Racer.Name, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Racer.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Racer.Age)
+                    @Html.TextBoxFor(model => model.Racer.Age, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Racer.Age)
+                </div>
+                <div class="form-group
+                     @Html.LabelFor(model => model.Racer.ClubId,"Club")
+                     @Html.DropDownListFor(model => model.Racer.ClubId,Model.ListItems, " Select Club ", new { @class = "form-control"})
+                     @Html.ValidationMessageFor(model => model.Racer.ClubId)
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

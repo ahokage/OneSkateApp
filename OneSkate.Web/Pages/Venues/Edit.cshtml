@@ -3,21 +3,31 @@
 @{
 }
 <html>
+<head>
+    <style>
+        .form-group {
+            margin-bottom: 10px
+        }
+    </style>
+</head>
 <body>
-    <form method="post">
-        <br />
-        @Html.LabelFor(m => m.Venue.Name)
-        @Html.TextBoxFor(m => m.Venue.Name)
-        @Html.ValidationMessageFor(m => m.Venue.Name)
-        <br />
-        <br />
-        @Html.LabelFor(m => m.Venue.Notes)
-        @Html.TextBoxFor(m => m.Venue.Notes)
-        @Html.ValidationMessageFor(m => m.Venue.Notes)
-        <br />
-        <br />
-        <button class="btn-primary" type="submit">Save</button>
-    </form>
-    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h3>Edit venue</h3>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Venue.Name)
+                    @Html.TextBoxFor(m => m.Venue.Name, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Venue.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Venue.Notes)
+                    @Html.TextBoxFor(m => m.Venue.Notes, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Venue.Notes)
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

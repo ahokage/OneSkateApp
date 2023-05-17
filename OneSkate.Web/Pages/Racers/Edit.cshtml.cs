@@ -22,9 +22,10 @@ namespace OneSkate.Web.Pages.Racers
         public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
 
 
-        public void OnGet()
+        public IActionResult OnGet(int id)
         {
             var clubs = _clubService.GetAll();
+            Racer = _racerService.GetById(id);
 
             foreach (var club in clubs)
             {
@@ -34,11 +35,23 @@ namespace OneSkate.Web.Pages.Racers
                     Value = club.Id.ToString()
                 });
             }
+            return Page();
         }
         public IActionResult OnPost(int id)
         {
             if (!ModelState.IsValid)
             {
+                var clubs = _clubService.GetAll();
+                Racer = _racerService.GetById(id);
+
+                foreach (var club in clubs)
+                {
+                    ListItems.Add(new SelectListItem
+                    {
+                        Text = club.Name,
+                        Value = club.Id.ToString()
+                    });
+                }
                 return Page();
             }
             _racerService.Update(id, Racer);

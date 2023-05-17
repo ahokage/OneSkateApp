@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
 using OneSkate.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace OneSkate.Web.Dtos
 {

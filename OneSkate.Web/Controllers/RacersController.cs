@@ -28,7 +28,7 @@ namespace OneSkate.Web.Controllers
             return _racerService.GetById(id);
         }
         [HttpPost]
-        public RacerDto Create(RacerDto racerdto) 
+        public RacerDto Create(RacerDto racerdto)
         {
             return _racerService.Create(racerdto);
         }
@@ -42,5 +42,14 @@ namespace OneSkate.Web.Controllers
         {
             _racerService.Update(id, RacerDto);
         }
+        //[HttpPost]
+        //public List<RacerDto> CreateMany(List<RacerDto> racers)
+        //{
+        //    foreach(var racer in racers)
+        //    {
+        //        _racerService.Create(racer);
+        //    }
+        //    return racers;
+        //}
     }
 }

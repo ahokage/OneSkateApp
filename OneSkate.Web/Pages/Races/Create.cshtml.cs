@@ -49,6 +49,28 @@ namespace OneSkate.Web.Pages.Races
         }
         public IActionResult OnPost() 
         {
+            if (!ModelState.IsValid)
+            {
+                Venues = _venueService.GetAll();
+                Racers = _racerService.GetAll();
+                foreach (var venue in Venues)
+                {
+                    ListItems.Add(new SelectListItem
+                    {
+                        Text = venue.Name,
+                        Value = venue.Id.ToString()
+                    });
+                }
+                foreach (var racer in Racers)
+                {
+                    RacersList.Add(new SelectListItem
+                    {
+                        Value = racer.Id.ToString(),
+                        Text = racer.Name
+                    });
+                }
+                return Page();
+            }
             Race.Racers = new List<RacerDto>(SelectedIds.Select(x => new RacerDto { Id = Convert.ToInt32(x) }));
             _raceService.Create(Race);
             return RedirectToPage("Display");

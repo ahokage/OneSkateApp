@@ -1,48 +1,60 @@
 ﻿@page
 @model OneSkate.Web.Pages.ClubsModel
-@*@{
-    ViewData["Title"] = "Clubs";
-}*@
-
-<h2>Clubs of racers</h2>
-<br />
-
-
+@{
+}
 <html>
-<body>
-    <form method="post">
-        @Html.LabelFor(m => m.Club.Name)
-        @Html.TextBoxFor(m => m.Club.Name)
-        @Html.ValidationMessageFor(m => m.Club.Name)
-        <br />
-        <br />
-        <button class="btn-primary" type="submit">Create club</button>
-    </form>
-    <br />
+<head>
+    <style>
+        .form-group {
+            margin-bottom: 10px
+        }
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var club in Model.Clubs)
-                {
-                    <tr>
-                        <td>
-                            @club.Name
-                        </td>
-                        <td>
-                            <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@club.Id">Edit</a>
-                            <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@club.Id" onclick="return confirm('Are you sure you want to delete @club.Name?')">Delete</a>
-                        </td>
-                    </tr>
+        table,th,td {
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h3>Create club</h3>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Club.Name)
+                    @Html.TextBoxFor(m => m.Club.Name,new { @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Club.Name)
+                </div>
+                <button class="btn btn-primary" type="submit">Create club</button>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div>
+        <h3>Clubs</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var club in Model.Clubs)
+                    {
+                        <tr>
+                            <td>
+                                @club.Name
+                            </td>
+                            <td>
+                                <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@club.Id">Edit</a>
+                                <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@club.Id"onclick="return confirm('Are you sure you want to delete @club.Name?')">Delete</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

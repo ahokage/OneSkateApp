@@ -2,13 +2,19 @@
 @model OneSkate.Web.Pages.Races.DisplayModel
 @{
 }
-<h2>Races</h2>
 
-<a asp-page="Create" class="btn btn-primary">Create New</a>
 
 <html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black
+        }
+    </style>
+</head>
 <body>
-
+    <h2>Races</h2>
+    <a asp-page="Create" class="btn btn-primary">Create New</a><br /><br />
     <table class="table">
         <thead>
             <tr>
@@ -30,9 +36,9 @@
                             @race.Date
                         </td>
                         <td>
-                            @foreach(var venue in Model.ListItems)
+                            @foreach (var venue in Model.ListItems)
                             {
-                                if(race.VenueId == Int32.Parse(venue.Value))
+                                if (race.VenueId == Int32.Parse(venue.Value))
                                 {
                                     @venue.Text
                                 }

@@ -7,9 +7,9 @@ namespace OneSkate.Web.Interfaces
     public interface IRaceService
     {
         IEnumerable<RaceGetDto> GetAll();
-        RaceGetDto GetById(int id);
+        RaceDto GetById(int id);
         RaceDto Create(RaceDto raceDto);
         void Delete(int id);
-        void Update(int id,RaceDto raceDto);
+        void Update(int id, RaceDto raceDto);
     }
 }

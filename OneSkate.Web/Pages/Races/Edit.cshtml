@@ -3,28 +3,44 @@
 @{
 }
 <html>
+<head>
+    <style>
+        .form-group {
+            margin-bottom: 10px
+        }
+    </style>
+</head>
 <body>
-    <form method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h3>Edit race</h3>
+                <div class="form-group">
+                    @Html.LabelFor(model =>model.Race.Name)
+                    @Html.TextBoxFor(model => model.Race.Name, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Race.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Race.Date)
+                    @Html.EditorFor(model => model.Race.Date,new { htmlAttributes = new{@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Race.Date)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model =>Model.SelectedIds,"Racers")
+                    @Html.ListBoxFor(model => Model.SelectedIds,Model.RacersList, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => Model.SelectedIds)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Race.VenueId,"Venue")
+                    @Html.DropDownListFor(model=>model.Race.VenueId,Model.ListItems,"Select Venue", new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Race.VenueId)
+                </div>
+                <div>
 
-        @Html.LabelFor(model =>model.Race.Name)
-        @Html.TextBoxFor(model => model.Race.Name)
-        <br />
-        <br />
-        @Html.LabelFor(model => model.Race.Date)
-        @Html.TextBoxFor(model => model.Race.Date)
-        <br />
-        <br />
-        @Html.LabelFor(model => Model.SelectedIds,"Racers")
-        @Html.ListBoxFor(model => Model.SelectedIds,Model.RacersList)
-        <br />
-        <br />
-        @Html.LabelFor(model => model.Race.VenueId,"Venue")
-        @Html.DropDownListFor(model=>model.Race.VenueId,Model.ListItems,"Select Venue")
-        <br />
-        <br />
-
-        <button class="btn-primary" type="submit">Save</button>
-    </form>
-    <br />
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

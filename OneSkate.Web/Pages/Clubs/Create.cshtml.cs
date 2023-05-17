@@ -1,3 +1,4 @@
+using Azure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,6 +7,7 @@ using OneSkate.Web.Data;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
 using OneSkate.Web.Models;
+using OneSkate.Web.Pages.Clubs;
 using System.Diagnostics;
 
 namespace OneSkate.Web.Pages
@@ -17,7 +19,7 @@ namespace OneSkate.Web.Pages
         {
             _clubService = clubService;
         }
-        public IEnumerable<ClubDto> Clubs { get; set; }
+        public IEnumerable<ClubDto> Clubs { get; set; } 
         [BindProperty]
         public ClubDto Club { get; set; }
 
@@ -30,6 +32,7 @@ namespace OneSkate.Web.Pages
         {
             if (!ModelState.IsValid)
             {
+                Clubs = _clubService.GetAll();
                 return Page();
             }
             _clubService.Create(Club);
