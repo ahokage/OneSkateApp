@@ -9,42 +9,44 @@
 </head>
 <body>
     @{
+        @if (!ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <h4>Error:</h4>
+                <hr />
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v=> v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                        break;
+                    }
+                </ul>
+            </div>
+        }
         <table class="table">
             <thead>
                 <tr>
                     <th>Racer</th>
-                    <th>Previous rank</th>
-                    <th>Set rank</th>
+                    <th>Rank</th>
                 </tr>
             </thead>
             <tbody>
                 <form method="post">
                     @{
-                        foreach (var result in Model.Race.Results)
+                        for (int i= 0;i< Model.Race.Results.Count;i++)
                         {
                         <tr>
                             <td>
-                                    @result.RacerName
+                                    @Model.Results[i].RacerName
                             </td>
                             <td>
-                                    @if (result.Rank == 0)
-                                    {
-
-                                    <h7>Not ranked</h7>
-                                    }
-                                    else
-                                    {
-                                        @result.Rank
-                                    }
-                            </td>
-                            <td>
-                                    @Html.TextBoxFor(model => Model.Ranks,new{Required = "required",type="number"})
-                                    @Html.ValidationMessageFor(model => Model.Ranks)
+                                    @Html.TextBoxFor(model => Model.Results[i].Rank,new{Required = "required",type="number"})
+                                    @Html.ValidationMessageFor(model => Model.Results)
                             </td>
                         </tr>                            
                         }
                     }
-                <button asp-route-id="@Model.Race.Id" class="btn btn-primary" type="submit">Save</button>
+                    <button asp-route-id="@Model.Race.Id" class="btn btn-primary" type="submit">Save</button>
                 </form>
             </tbody>
         </table>

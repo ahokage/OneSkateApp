@@ -21,8 +21,6 @@ namespace OneSkate.Web.Pages.Races
         [BindProperty]
         public List<ResultGetDto> Results { get; set; }
         [BindProperty]
-        public List<int> Ranks { get; set; }
-        [BindProperty]
         public RaceDto Race { get; set; }
         public void OnGet(int id)
         {
@@ -41,37 +39,62 @@ namespace OneSkate.Web.Pages.Races
 
                     };
                     Race.Results.Add(resultDto);
+                    Results.Add(resultDto);
                 }
+                _raceService.Update(Race.Id, Race);
             }
         }
         public IActionResult OnPost(int id)
         {
             Race = _raceService.GetById(id);
-            var results = Race.Results.ToList();
+            var results = Results.ToList();
             var racers = Race.Racers.ToList();
-
-            if (results.Count == 0)
+            var count = 0;
+            var racerscount = 0;
+            for(int i=0; i<results.Count; i++)
             {
-                for (int i = 0; i < racers.Count; i++)
+                for(int j = 0;j < results.Count; j++)
                 {
-                    ResultGetDto resultDto = new()
+                    if (results[i].Rank == results[j].Rank)
                     {
-                        RacerId = racers[i].Id,
-                        RaceId = Race.Id,
-                        RacerName = racers[i].Name,
-                        Rank = Ranks[i],
-                    };
-                    Race.Results.Add(resultDto);
+                        ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                        Results = Race.Results.ToList();
+                        return Page();
+                    }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < racers.Count; i++)
+                if (results[i].Rank < 1)
                 {
-                    results[i].Rank = Ranks[i];
+
+                    ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                    Results = Race.Results.ToList();
+                    return Page();
                 }
-                Race.Results = results;
+                racerscount += i + 1;
+                count += results[i].Rank;
             }
+
+            if (count != racerscount)
+            {
+                ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                Results = Race.Results.ToList();
+                return Page();
+            }
+
+            Results.Clear();
+            for (int i = 0; i < racers.Count; i++)
+            {
+                ResultGetDto resultDto = new()
+                {
+                    RacerId = racers[i].Id,
+                    RaceId = Race.Id,
+                    RacerName = racers[i].Name,
+                    Rank = results[i].Rank
+                };
+                Results.Add(resultDto);
+                Race.Results.Add(resultDto);
+            }
+
+            Race.Results = Results;
             _raceService.Update(Race.Id, Race);
             return RedirectToPage("Results", new { id = Race.Id });
         }
