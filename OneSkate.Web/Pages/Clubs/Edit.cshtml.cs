@@ -28,7 +28,7 @@ namespace OneSkate.Web.Pages.Clubs
                 return Page();
             }
             _clubService.Update(id,Club);
-            return RedirectToPage("Create");
+            return RedirectToPage("Display");
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿@page
+@model OneSkate.Web.Pages.ClubsModel
+@{
+}
+<html>
+<head>
+    <style>
+        .form-group {
+            margin-bottom: 10px
+        }
+
+        table,th,td {
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Clubs</h3>
+        <a asp-page="Create" class="btn btn-primary">Create new</a>
+        <br />
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var club in Model.Clubs)
+                    {
+                        <tr>
+                            <td>
+                                @club.Name
+                            </td>
+                            <td>
+                                <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@club.Id">Edit</a>
+                                <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@club.Id"onclick="return confirm('Are you sure you want to delete @club.Name?')">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

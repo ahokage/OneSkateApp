@@ -18,7 +18,7 @@ namespace OneSkate.Web.Pages
         public IActionResult OnGet(int id)
         {
             _clubService.Delete(id);
-            return RedirectToPage("Create");
+            return RedirectToPage("Display");
         }
     }
 }

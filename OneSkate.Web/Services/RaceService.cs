@@ -31,7 +31,16 @@ namespace OneSkate.Web.Services
 
             return raceDto;
         }
+        public void Update(int id, RaceDto raceDto)
+        {
+            var raceInDb = _context.Races.Include(x => x.Racers).Include(x => x.Results).FirstOrDefault(x => x.Id == id);
+            if (raceInDb == null)
+                throw new Exception("Race not found.");
 
+            _mapper.Map(raceDto, raceInDb);
+            _context.Update(raceInDb);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             var raceInDb = _context.Races.FirstOrDefault(r => r.Id == id);
@@ -82,16 +91,6 @@ namespace OneSkate.Web.Services
 
             return _mapper.Map<RaceDto>(raceInDb);
         }
-
-        public void Update(int id, RaceDto raceDto)
-        {
-            var raceInDb = _context.Races.Include(x => x.Racers).Include(x => x.Results).FirstOrDefault(x => x.Id == id);
-
-            if (raceInDb == null)
-                throw new Exception("Race not found.");
-
-            _mapper.Map(raceDto, raceInDb);
-            _context.SaveChanges();
-        }
+        
     }
 }

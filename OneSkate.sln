@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSkate", "OneSkate\OneSkate.csproj", "{9155D915-2AB9-4E5E-A658-CDBB6CB4CB60}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSkate.Web", "OneSkate.Web\OneSkate.Web.csproj", "{1A65A011-EF6E-4C2D-9F28-68F31E599FC1}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9155D915-2AB9-4E5E-A658-CDBB6CB4CB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9155D915-2AB9-4E5E-A658-CDBB6CB4CB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9155D915-2AB9-4E5E-A658-CDBB6CB4CB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9155D915-2AB9-4E5E-A658-CDBB6CB4CB60}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A65A011-EF6E-4C2D-9F28-68F31E599FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A65A011-EF6E-4C2D-9F28-68F31E599FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A65A011-EF6E-4C2D-9F28-68F31E599FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU

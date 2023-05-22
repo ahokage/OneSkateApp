@@ -9,37 +9,45 @@
 </head>
 <body>
     @{
-
-        if (Model.ListItems.Count == 0)
-        {
-            <h3 style="text-align:center">This race has no results yet.</h3>
-        }
-        else
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Racer</th>
-                        <th>Rank</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Racer</th>
+                    <th>Previous rank</th>
+                    <th>Set rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form method="post">
                     @{
-                        foreach (var result in Model.ListItems)
+                        foreach (var result in Model.Race.Results)
                         {
-                            <tr>
-                                <td>
-                                    @result.Text
-                                </td>
-                                <td>
-                                    @result.Value
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                    @result.RacerName
+                            </td>
+                            <td>
+                                    @if (result.Rank == 0)
+                                    {
+
+                                    <h7>Not ranked</h7>
+                                    }
+                                    else
+                                    {
+                                        @result.Rank
+                                    }
+                            </td>
+                            <td>
+                                    @Html.TextBoxFor(model => Model.Ranks,new{Required = "required",type="number"})
+                                    @Html.ValidationMessageFor(model => Model.Ranks)
+                            </td>
+                        </tr>                            
                         }
                     }
-                </tbody>
-            </table>
-        }
+                <button asp-route-id="@Model.Race.Id" class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </tbody>
+        </table>
     }
 
 

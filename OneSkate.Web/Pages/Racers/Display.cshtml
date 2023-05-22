@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td>
-                            <a asp-page="Results" class="btn-link" asp-route-Id="@racer.Id">@racer.Name</a>
+                            @racer.Name
                         </td>
                         <td>
                             @racer.Age
@@ -46,6 +46,7 @@
                         </td>
                         <td>
                             <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@racer.Id">Edit</a>
+                            <a asp-page="Results" class="btn btn-primary" asp-route-Id="@racer.Id">Results</a>
                             <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@racer.Id" onclick="return confirm('Are you sure you want to delete this racer : @racer.Name')">Delete</a>
                         </td>
                     </tr>

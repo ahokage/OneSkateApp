@@ -36,6 +36,17 @@ namespace OneSkate.Web.Pages.Racers
         {
             if (!ModelState.IsValid)
             {
+                var clubs = _clubService.GetAll();
+
+                foreach (var club in clubs)
+                {
+                    ListItems.Add(new SelectListItem
+                    {
+                        Text = club.Name,
+                        Value = club.Id.ToString()
+                    });
+                }
+
                 return Page();
             }
             _racerService.Create(Racer);

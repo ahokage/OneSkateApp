@@ -42,8 +42,9 @@ namespace OneSkate.Web.Pages.Races
             {
                 RacersList.Add(new SelectListItem
                 {
+                    Text = racer.Name,
                     Value = racer.Id.ToString(),
-                    Text = racer.Name
+                    
                 });
             }
         }

@@ -16,6 +16,6 @@ namespace OneSkate.Web.Dtos
         [Required]
         public DateTime Date { get; set; }
         public ICollection<RacerDto> Racers { get; set; }
-        public ICollection<ResultDto> Results { get; set; }
+        public ICollection<ResultGetDto> Results { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@page
-@model OneSkate.Web.Pages.ClubsModel
+@model OneSkate.Web.Pages.Clubs.CreateModel
 @{
 }
 <html>
@@ -29,32 +29,5 @@
         </div>
     </div>
     <br />
-    <div>
-        <h3>Clubs</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var club in Model.Clubs)
-                    {
-                        <tr>
-                            <td>
-                                @club.Name
-                            </td>
-                            <td>
-                                <a asp-page="Edit" class="btn btn-primary" asp-route-Id="@club.Id">Edit</a>
-                                <a asp-page="Delete" class="btn btn-primary" asp-route-Id="@club.Id"onclick="return confirm('Are you sure you want to delete @club.Name?')">Delete</a>
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
 </body>
 </html>
