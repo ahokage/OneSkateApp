@@ -53,7 +53,7 @@ namespace OneSkate.Web.Pages.Races
             var racerscount = 0;
             for(int i=0; i<results.Count; i++)
             {
-                for(int j = 0;j < results.Count; j++)
+                for(int j = i+1;j < results.Count; j++)
                 {
                     if (results[i].Rank == results[j].Rank)
                     {
@@ -62,9 +62,8 @@ namespace OneSkate.Web.Pages.Races
                         return Page();
                     }
                 }
-                if (results[i].Rank < 1)
+                if (results[i].Rank < 1 || results[i].Rank>results.Count)
                 {
-
                     ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
                     Results = Race.Results.ToList();
                     return Page();
