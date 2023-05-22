@@ -57,14 +57,14 @@ namespace OneSkate.Web.Pages.Races
                 {
                     if (results[i].Rank == results[j].Rank)
                     {
-                        ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                        ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
                         Results = Race.Results.ToList();
                         return Page();
                     }
                 }
                 if (results[i].Rank < 1 || results[i].Rank>results.Count)
                 {
-                    ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                    ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
                     Results = Race.Results.ToList();
                     return Page();
                 }
@@ -74,7 +74,7 @@ namespace OneSkate.Web.Pages.Races
 
             if (count != racerscount)
             {
-                ModelState.AddModelError("", "Cannot have negative, 0 or duplicate rankings!");
+                ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
                 Results = Race.Results.ToList();
                 return Page();
             }
