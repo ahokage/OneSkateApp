@@ -62,6 +62,12 @@ namespace OneSkate.Web.Data
                 .HasMany(x => x.Racers)
                 .WithOne(x => x.Club)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Race>()
+                .HasOne(x => x.Venue)
+                .WithMany()
+                .HasForeignKey(x => x.VenueId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

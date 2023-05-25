@@ -15,7 +15,7 @@
                 <h4>Error:</h4>
                 <hr />
                 <ul>
-                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v=> v.Errors))
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                     {
                         <li>@error.ErrorMessage</li>
                         break;
@@ -33,7 +33,7 @@
             <tbody>
                 <form method="post">
                     @{
-                        for (int i= 0;i< Model.Race.Results.Count;i++)
+                        for (int i = 0; i < Model.Race.Results.Count; i++)
                         {
                         <tr>
                             <td>
@@ -43,10 +43,10 @@
                                     @Html.TextBoxFor(model => Model.Results[i].Rank,new{Required = "required",type="number"})
                                     @Html.ValidationMessageFor(model => Model.Results)
                             </td>
-                        </tr>                            
+                        </tr>
                         }
                     }
-                    <button asp-route-id="@Model.Race.Id" class="btn btn-primary" type="submit">Save</button>
+                <button asp-route-id="@Model.Race.Id" class="btn btn-primary" type="submit">Save</button>
                 </form>
             </tbody>
         </table>

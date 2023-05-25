@@ -44,33 +44,28 @@ namespace OneSkate.Web.Pages.Races
             var results = Results.ToList();
             var racers = Race.Racers.ToList();
             var count = 0;
-            var racerscount = 0;
-            for (int i = 0; i < results.Count; i++)
+            List<int> ranks = new();
+
+            for (int i = 1; i <= results.Count; i++) { ranks.Add(i); }
+
+            foreach (var result in results) { ranks.Add(result.Rank); }
+
+            for (int i = 0; i < ranks.Count; i++)
             {
-                for (int j = i + 1; j < results.Count; j++)
+                for (int j = 0; j < ranks.Count; j++)
                 {
-                    if (results[i].Rank == results[j].Rank)
+                    if (ranks[i] == ranks[j])
                     {
-                        ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
-                        Results = Race.Results.ToList();
-                        return Page();
+                        count++;
                     }
                 }
-                if (results[i].Rank < 1 || results[i].Rank > results.Count)
+                if (count != 2)
                 {
                     ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
                     Results = Race.Results.ToList();
                     return Page();
                 }
-                racerscount += i + 1;
-                count += results[i].Rank;
-            }
-
-            if (count != racerscount)
-            {
-                ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
-                Results = Race.Results.ToList();
-                return Page();
+                count = 0;
             }
 
             Results.Clear();
