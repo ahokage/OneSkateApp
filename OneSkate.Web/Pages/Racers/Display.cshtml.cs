@@ -10,7 +10,7 @@ namespace OneSkate.Web.Pages.Racers
     {
         private readonly IRacerService _racerService;
         private readonly IClubService _clubService;
-        public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> ListItems { get; set; } = new();
 
         public DisplayModel(IRacerService racerService, IClubService clubService)
         {

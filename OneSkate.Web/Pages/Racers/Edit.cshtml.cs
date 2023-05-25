@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
-using System.Reflection;
 
 namespace OneSkate.Web.Pages.Racers
 {
@@ -19,7 +17,7 @@ namespace OneSkate.Web.Pages.Racers
         }
         [BindProperty]
         public RacerDto Racer { get; set; }
-        public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> ListItems { get; set; } = new();
 
 
         public IActionResult OnGet(int id)

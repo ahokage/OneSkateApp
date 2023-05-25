@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
-using OneSkate.Web.Models;
 
 namespace OneSkate.Web.Pages.Racers
 {

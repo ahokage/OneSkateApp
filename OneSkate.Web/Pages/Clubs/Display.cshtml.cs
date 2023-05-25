@@ -1,14 +1,7 @@
-using Azure;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Storage;
-using OneSkate.Web.Data;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
-using OneSkate.Web.Models;
-using OneSkate.Web.Pages.Clubs;
-using System.Diagnostics;
 
 namespace OneSkate.Web.Pages
 {

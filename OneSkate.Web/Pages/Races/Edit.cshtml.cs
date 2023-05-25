@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
-using OneSkate.Web.Models;
 
 namespace OneSkate.Web.Pages.Races
 {
@@ -21,8 +20,8 @@ namespace OneSkate.Web.Pages.Races
             _racerService = racerService;
             _mapper = mapper;
         }
-        public List<SelectListItem> ListItems = new List<SelectListItem>();
-        public List<SelectListItem> RacersList = new List<SelectListItem>();
+        public List<SelectListItem> ListItems = new();
+        public List<SelectListItem> RacersList = new();
 
         [BindProperty]
         public List<string> SelectedIds { get; set; }

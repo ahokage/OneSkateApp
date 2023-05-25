@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OneSkate.Web.Dtos;
@@ -16,7 +15,7 @@ namespace OneSkate.Web.Pages.Races
             _venueservice = venueservice;
         }
         public IEnumerable<RaceGetDto> Races { get; set; }
-        public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> ListItems { get; set; } = new();
 
 
         public void OnGet()

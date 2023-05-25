@@ -1,13 +1,7 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OneSkate.Web.Dtos;
 using OneSkate.Web.Interfaces;
-using OneSkate.Web.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace OneSkate.Web.Pages.Races
 {
@@ -51,9 +45,9 @@ namespace OneSkate.Web.Pages.Races
             var racers = Race.Racers.ToList();
             var count = 0;
             var racerscount = 0;
-            for(int i=0; i<results.Count; i++)
+            for (int i = 0; i < results.Count; i++)
             {
-                for(int j = i+1;j < results.Count; j++)
+                for (int j = i + 1; j < results.Count; j++)
                 {
                     if (results[i].Rank == results[j].Rank)
                     {
@@ -62,7 +56,7 @@ namespace OneSkate.Web.Pages.Races
                         return Page();
                     }
                 }
-                if (results[i].Rank < 1 || results[i].Rank>results.Count)
+                if (results[i].Rank < 1 || results[i].Rank > results.Count)
                 {
                     ModelState.AddModelError("", "Cannot have negative, 0, duplicate or untaken rankings!");
                     Results = Race.Results.ToList();
@@ -95,7 +89,7 @@ namespace OneSkate.Web.Pages.Races
 
             Race.Results = Results;
             _raceService.Update(Race.Id, Race);
-            return RedirectToPage("Results", new { id = Race.Id });
+            return RedirectToPage("Display");
         }
 
     }

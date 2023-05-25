@@ -16,7 +16,7 @@ namespace OneSkate.Web.Pages.Racers
             _racerService = racerService;
             _resultService = resultService;
         }
-        public List<SelectListItem> ListItems { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> ListItems { get; set; } = new();
         public IEnumerable<ResultRacerGetDto> Results { get; set; }
         public RacerDto Racer { get; set; }
         public void OnGet(int id)

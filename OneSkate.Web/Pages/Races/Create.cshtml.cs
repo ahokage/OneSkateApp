@@ -21,8 +21,8 @@ namespace OneSkate.Web.Pages.Races
         public IEnumerable<RacerDto> Racers { get; set; }
         [BindProperty]
         public List<string> SelectedIds { get; set; }
-        public List<SelectListItem> ListItems = new List<SelectListItem>();
-        public List<SelectListItem> RacersList = new List<SelectListItem>();
+        public List<SelectListItem> ListItems = new();
+        public List<SelectListItem> RacersList = new();
 
         [BindProperty]
         public RaceDto Race { get; set; }
